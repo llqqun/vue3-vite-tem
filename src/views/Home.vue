@@ -1,6 +1,10 @@
 <template>
   <div class="home">
     <h1>欢迎来到首页</h1>
+    <div>
+      <a href="/people-list">链接</a>
+      <div @click="router.push('/people-list')">路由</div>
+    </div>
     <p>这是一个使用Vue 3构建的项目</p>
     
     <div class="demo-section">
@@ -30,20 +34,20 @@
         </div>
       </div>
     </div>
+    <div>{{ exampleStore.count }}</div>
+    <div>{{ exampleStore.doubleCount }}</div>
+    <button @click="exampleStore.increment">增加</button>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Home',
-  setup() {
-    // 组件逻辑
-    return {}
-  }
-}
+<script setup>
+import { useExampleStore } from '@/store/modules/example'
+import { useRouter } from 'vue-router'
+const exampleStore = useExampleStore()
+const router = useRouter()
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .home {
   text-align: center;
   padding: 20px;

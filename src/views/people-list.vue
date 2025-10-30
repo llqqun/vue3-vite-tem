@@ -6,38 +6,36 @@
         {{ person.name }} - {{ person.age }}岁
       </li>
     </ul>
+    <div>{{ exampleStore.count }}</div>
   </div>
 </template>
 
-<script>
-  export default {
-    name: 'PeopleList',
-    data() {
-      return {
-        people: [
-          { id: 1, name: '张三', age: 25 },
-          { id: 2, name: '李四', age: 30 },
-          { id: 3, name: '王五', age: 35 },
-        ],
-      };
-    },
-  };
+<script setup>
+import { ref } from 'vue'
+import { useExampleStore } from '@/store/modules/example'
+const exampleStore = useExampleStore()
+
+const people = ref([
+  { id: 1, name: '张三', age: 25 },
+  { id: 2, name: '李四', age: 30 },
+  { id: 3, name: '王五', age: 35 },
+])
 </script>
 
 <style lang="scss" scoped>
-@import '../styles/variables.scss';
+@use '../styles/variables.scss' as var;
 
 .people-list {
-  padding: $spacing-lg;
+  padding: var.$spacing-lg;
 }
 
 h1 {
-  font-size: $font-size-xl;
-  color: $text-primary;
-  margin-bottom: $spacing-lg;
+  font-size: var.$font-size-xl;
+  color: var.$text-primary;
+  margin-bottom: var.$spacing-lg;
   
   &:hover {
-    color: $primary-color;
+    color: var.$primary-color;
     transition: color 0.3s ease;
   }
 }
@@ -47,8 +45,8 @@ ul {
 }
 
 li {
-  font-size: $font-size-lg;
-  color: $text-secondary;
-  margin-bottom: $spacing-base;
+  font-size: var.$font-size-lg;
+  color: var.$text-secondary;
+  margin-bottom: var.$spacing-base;
 }
 </style>
